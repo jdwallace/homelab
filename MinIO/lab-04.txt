@@ -1,0 +1,55 @@
+# deploy storage the good old fashioned way
+sudo mkdir /mnt/minio
+kubectl create namespace minio-manual
+kubectl -n minio-manual apply -f minio-manual/.
+
+# Use what you have learned to check the status of the deployment, pod, pv and pvc
+
+kubectl -n lesson04-2 get svc
+
+# connect to the minio deployment and upload some data
+
+# Check to make sure the data uploaded
+
+# Questions:
+# How did it know which PV to use?
+# what happens if the node fails?
+
+
+# Now we will use a CSI driver. First, we need to install helm, think package manager for k8s
+
+# Install helm
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+# Take a moment to appriciate what the above did
+
+# Modify for the PSOValues.yaml
+vi resources/PSOValues.yaml
+# Please set the cluster name to something that I can pick out in a search and let me know what it is
+
+# Install PSO
+kubectl create namespace pso
+helm repo add pure https://purestorage.github.io/pso-csi
+helm repo update
+helm search repo pure-pso -l
+helm install pure-pso pure/pure-pso --version 6.0.3 --namespace pso -f resources/PSOValues.yaml --dry-run --debug
+
+The above will perform a dry run, look at what the helm chart does, do you recognize anything in the yaml files?
+
+# Install PSO (for real this time)
+helm install pure-pso pure/pure-pso --version 6.0.3 --namespace pso -f resources/PSOValues.yaml
+kubectl get pods -A --watch
+kubectl get storageclass
+
+# let's talk about the startup process
+
+# let's talk about common things that can go wrong
+
+# Carefully review the files in the minio-pvc and take note of what changed (use diff if needed)
+# Now lets try minio again:
+kubectl create namespace lesson04-3
+kubectl -n lesson04-3 apply -f minio-pvc/.
+
+# Use what you have learned to check the status of the deployment, pod, service, pv and pvc
+
+# NOTE! We now have created a lot of storage in the DFW lab. We need to now pay careful attention to snapshot reverts and cleanup tasks
+# it is possible to clean up lessons by deleting the namespaces
