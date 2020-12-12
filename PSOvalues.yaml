@@ -50,7 +50,7 @@ storagetopology:
 arrays:
   FlashArrays:
     - MgmtEndPoint: "192.168.1.245"
-      APIToken: "f5ba6d62-63c1-3a3a-f9d2-642de1124fef"
+      APIToken: "966f766f-12bc-0515-782b-26daa4944ea9"
   FlashBlades: []
 
 flasharray:
