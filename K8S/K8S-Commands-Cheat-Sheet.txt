@@ -1,3 +1,7 @@
 # Kubernetes Commands Cheat Sheet
 
-kubectl describe pod -n pso [PODNAME]
+kubectl describe pod -n [NAMESPACE] [PODNAME]
+
+kubectl get pods -A --watch
+
+kubectl get storageclass
