@@ -1,7 +1,38 @@
 # Kubernetes Commands Cheat Sheet
 
-kubectl describe pod -n [NAMESPACE] [PODNAME]
+# Kubectl
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+kubectl create namespace <NameSpace>
+kubectl get pods
+kubectl get nodes
+kubectl describe nodes
+kubectl apply -f swagger.yaml -n <NameSpace>
+kubectl get pods -n class
+kubectl get services -n <NameSpace>
 
+kubectl describe pod -n <NAMESPACE> <PODNAME>
 kubectl get pods -A --watch
-
 kubectl get storageclass
+
+# Git
+git pull
+git add .
+git commit -m "my first test commit"
+git push origin master
+
+# Linux
+ssh-copy-id <user>@<host>
+
+# Generate key on host and add to itself
+ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
+ssh-keyscan -H localhost >> ~/.ssh/known_hosts
+ssh-copy-id <user>@localhost
+
+# Docker
+sudo docker run -it --rm -p 80:5000 sile16/pureswagger
+sudo docker build -t <YourUserName>/vsftp:latest .
+sudo docker login --username=jdwallacecom
+docker ps
+docker kill
+docker rm
+docker rmi
