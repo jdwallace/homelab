@@ -37,3 +37,7 @@ docker ps
 docker kill
 docker rm
 docker rmi
+
+# Portworx
+kubectl exec px-cluster-539d3575-afff-44cd-8786-c2bce06ce8ea-d8fpv -n kube-system -it -- /opt/pwx/bin/pxctl status
+alias pxctl='kubectl exec px-cluster-539d3575-afff-44cd-8786-c2bce06ce8ea-d8fpv  -n kube-system -it -- /opt/pwx/bin/pxctl'
