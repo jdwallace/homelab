@@ -23,6 +23,7 @@ git push origin master
 
 # Linux
 ssh-copy-id <user>@<host>
+du -a / | sort -n -r | head -n 20 #show large files anywhere
 
 # Generate key on host and add to itself
 ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
